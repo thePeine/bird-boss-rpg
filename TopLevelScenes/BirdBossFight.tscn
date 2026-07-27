@@ -13,7 +13,7 @@ script = ExtResource("1_7463k")
 [node name="Dialog" parent="." unique_id=571952403 instance=ExtResource("1_ebf7g")]
 z_index = 2
 position = Vector2(20, 20)
-chars_displayed_per_second = 8
+chars_displayed_per_second = 20
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=1854658573]
 position = Vector2(160, 90)

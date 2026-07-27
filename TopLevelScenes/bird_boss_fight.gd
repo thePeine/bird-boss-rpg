@@ -1,7 +1,7 @@
 class_name BirdBossFight
 extends Node2D
 
-enum BossFightState { Idle, IntroDialog }
+enum BossFightState { Idle, IntroDialog, Battle }
 @onready var dialog_node: DialogNode2D = $Dialog
 
 var _state: BossFightState
@@ -12,17 +12,42 @@ var _intro_dialog_data: DialogData
 func _ready() -> void:
     _state = BossFightState.Idle
     _intro_dialog_data = DialogData.new()
+    dialog_node.visible = false
     
-    var first_dialog_message := DialogData.DialogMessage.new()
-    first_dialog_message.owner_name = "P1"
-    first_dialog_message.message_text = "Yup.  That's the one, Sugar.  We can't let him get away!"
-    _intro_dialog_data.messages.push_back(first_dialog_message)
+    var path := "res://DataFiles/PreBossFightDialog.json"
+    if not FileAccess.file_exists(path):
+       push_error("Coudln't load lineup from disk")
+       return
     
-    dialog_node.set_dialog_data(_intro_dialog_data)
+    var parsed_data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
+    if parsed_data is Dictionary:
+        var raw_messages: Variant = parsed_data.get("messages")
+        if raw_messages is Array:
+            var parsed_messages: Array = raw_messages
+            for message: Dictionary in parsed_messages:
+                var dialog_message := DialogData.DialogMessage.new()
+                dialog_message.owner_name = message["owner_name"]
+                dialog_message.message_text = message["message_text"]
+                _intro_dialog_data.messages.push_back(dialog_message)
+    
+    dialog_node.set_dialog_data(_intro_dialog_data, self)
+    dialog_node.connect("dialog_completed", _on_dialog_completed)
 
+func _on_dialog_completed() -> void:
+    dialog_node.visible = false
+    _state = BossFightState.Battle
+    
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-    var should_start_dialog := Input.is_action_just_pressed('StartDialog')    
-    if should_start_dialog:
-        dialog_node.start_dialog_from_beginning()
+    match _state:
+        BossFightState.Idle:
+            var should_start_dialog := Input.is_action_just_pressed('StartDialog')    
+            if should_start_dialog:
+                dialog_node.visible = true
+                dialog_node.start_dialog_from_beginning()
+                _state = BossFightState.IntroDialog
+        BossFightState.IntroDialog:
+            return
+        BossFightState.Battle:
+            return
     pass

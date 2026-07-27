@@ -1,5 +1,6 @@
 class_name DialogData
 extends Resource
+
 var messages: Array[DialogMessage]
 
 
