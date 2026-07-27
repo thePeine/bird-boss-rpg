@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://qmyb85gjg0n6"]
+
+[ext_resource type="Texture2D" uid="uid://d2sobk2r23o52" path="res://game_objects/Player2/P2.png" id="1_6r7y4"]
+
+[node name="P2" type="Node2D" unique_id=1861915092]
+
+[node name="FootOffset" type="Node2D" parent="." unique_id=1023573786]
+
+[node name="MainSprite" type="Sprite2D" parent="FootOffset" unique_id=1698513797]
+position = Vector2(0, -16)
+texture = ExtResource("1_6r7y4")

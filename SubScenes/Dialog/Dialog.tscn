@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bd7ynflq1f1q"]
+
+[ext_resource type="FontFile" uid="uid://1hcng26cbn6y" path="res://PressStart2P-Regular.ttf" id="1_mls0e"]
+[ext_resource type="Script" uid="uid://cd4mf54x0ub8h" path="res://SubScenes/Dialog/dialog.gd" id="1_po8em"]
+[ext_resource type="Texture2D" uid="uid://bgnow0b37v2o6" path="res://SubScenes/Dialog/UITileSeamless.png" id="2_kse43"]
+
+[node name="Dialog" type="Node2D" unique_id=571952403]
+script = ExtResource("1_po8em")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=641609770]
+offset_right = 201.0
+offset_bottom = 41.0
+texture = ExtResource("2_kse43")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="SpeechIndicator2" type="Node2D" parent="NinePatchRect" unique_id=1765053272]
+
+[node name="Foreground" type="Polygon2D" parent="NinePatchRect/SpeechIndicator2" unique_id=938326349]
+position = Vector2(21.000002, -33)
+scale = Vector2(0.56060606, 0.75716573)
+color = Color(0.30980393, 0.12156863, 0.12156863, 1)
+polygon = PackedVector2Array(120, 94, 186, 94, 154, 137)
+
+[node name="SpeechText" type="RichTextLabel" parent="NinePatchRect" unique_id=88631729]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 194.0
+offset_bottom = 34.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_mls0e")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12

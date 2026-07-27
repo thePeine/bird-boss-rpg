@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cpat4gceuxiys"]
+
+[ext_resource type="Texture2D" uid="uid://crsfj12gch3xe" path="res://game_objects/BirdBoss/BirdBoss.png" id="1_1ugnj"]
+
+[node name="BirdBoss" type="Node2D" unique_id=709547321]
+
+[node name="FootOffset" type="Node2D" parent="." unique_id=881954855]
+position = Vector2(0, -16)
+
+[node name="MainSprite" type="Sprite2D" parent="FootOffset" unique_id=32749903]
+texture = ExtResource("1_1ugnj")

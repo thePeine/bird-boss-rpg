@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://w05y0lfhea1y"]
+
+[ext_resource type="Script" uid="uid://bxmjddixb2a88" path="res://TopLevelScenes/bird_boss_fight.gd" id="1_7463k"]
+[ext_resource type="PackedScene" uid="uid://bd7ynflq1f1q" path="res://SubScenes/Dialog/Dialog.tscn" id="1_ebf7g"]
+[ext_resource type="Texture2D" uid="uid://dyfpyklbvgbir" path="res://TopLevelScenes/Background.png" id="3_kfc5s"]
+[ext_resource type="PackedScene" uid="uid://cpat4gceuxiys" path="res://game_objects/BirdBoss/BirdBoss.tscn" id="4_qvsrs"]
+[ext_resource type="PackedScene" uid="uid://c5u343xbehvtt" path="res://game_objects/Player1/P1.tscn" id="5_5d15i"]
+[ext_resource type="PackedScene" uid="uid://qmyb85gjg0n6" path="res://game_objects/Player2/P2.tscn" id="6_tm1hd"]
+
+[node name="BirdBossFight" type="Node2D" unique_id=1915768491]
+script = ExtResource("1_7463k")
+
+[node name="Dialog" parent="." unique_id=571952403 instance=ExtResource("1_ebf7g")]
+z_index = 2
+position = Vector2(20, 20)
+chars_displayed_per_second = 8
+
+[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=1854658573]
+position = Vector2(160, 90)
+texture = ExtResource("3_kfc5s")
+
+[node name="BirdBoss" parent="." unique_id=709547321 instance=ExtResource("4_qvsrs")]
+z_index = 2
+position = Vector2(240, 144)
+
+[node name="P1" parent="." unique_id=1869987899 instance=ExtResource("5_5d15i")]
+z_index = 2
+position = Vector2(40, 133)
+
+[node name="P2" parent="." unique_id=1861915092 instance=ExtResource("6_tm1hd")]
+z_index = 2
+position = Vector2(79, 167)
