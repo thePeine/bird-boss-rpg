@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2sobk2r23o52"
-path="res://.godot/imported/P2.png-7f77fbbc230766a9e702331fcfe033c6.ctex"
+uid="uid://uvdl85cnarri"
+path="res://.godot/imported/boxer1walkback-Sheet.png-7fa5c92d177d535ad273d31e0b49827a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_objects/Player2/P2.png"
-dest_files=["res://.godot/imported/P2.png-7f77fbbc230766a9e702331fcfe033c6.ctex"]
+source_file="res://AssetDump/boxer1walkback-Sheet.png"
+dest_files=["res://.godot/imported/boxer1walkback-Sheet.png-7fa5c92d177d535ad273d31e0b49827a.ctex"]
 
 [params]
 

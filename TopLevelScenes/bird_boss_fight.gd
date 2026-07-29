@@ -3,8 +3,23 @@ extends Node2D
 
 enum BossFightState { Idle, IntroDialog, Battle }
 @onready var dialog_node: DialogNode2D = $Dialog
+@onready var bird_boss: Node2D = $BirdBoss
+@onready var p1: PlayerCharacter = $P1
+@onready var p2: PlayerCharacter = $P2
 
-var _state: BossFightState
+@onready var _combattents: Array[Node2D] = [bird_boss, p1, p2]
+var _combattents_index: int
+
+var _state: BossFightState:
+    get:
+        return _state
+    set(value):
+        _state = value
+        
+        match _state:
+            BossFightState.Battle:
+                _combattents_index = 0
+        
 var _intro_dialog_data: DialogData
 
 
@@ -41,11 +56,15 @@ func _on_dialog_completed() -> void:
 func _process(delta: float) -> void:
     match _state:
         BossFightState.Idle:
-            var should_start_dialog := Input.is_action_just_pressed('StartDialog')    
-            if should_start_dialog:
+            if Input.is_action_just_pressed('StartDialog'):
                 dialog_node.visible = true
                 dialog_node.start_dialog_from_beginning()
                 _state = BossFightState.IntroDialog
+            elif Input.is_action_just_pressed('StartBattle'):
+                dialog_node.visible = false
+                _state = BossFightState.Battle
+                #p1.on_your_turn_start()
+            
         BossFightState.IntroDialog:
             return
         BossFightState.Battle:

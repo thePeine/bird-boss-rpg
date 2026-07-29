@@ -63,6 +63,9 @@ func _ready() -> void:
     str_size_test = _text_font.get_string_size("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#%&'()*+,-./:;<=>?@[^_{|}~", HORIZONTAL_ALIGNMENT_LEFT, -1, _font_size)
     visible = false
     _message_display_data = MessageDisplayData.new()
+    
+    if chars_displayed_per_second <= 0:
+        chars_displayed_per_second = 12
  
 func set_dialog_data(dialog_data: DialogData, scene_search_root: Node2D) -> void:
     _dialog_data = dialog_data 

@@ -1,0 +1,2 @@
+class_name BirdBossOverworld
+extends CharacterBody2D

@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://c5u343xbehvtt"]
+
+[ext_resource type="Script" uid="uid://diqxq3gwyvg1p" path="res://game_objects/Player1/P1_Overworld.gd" id="1_osyf6"]
+[ext_resource type="Texture2D" uid="uid://ctnd2baiyglc4" path="res://game_objects/Player1/boxerrasterized-Sheet.png" id="2_77jvo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6okuj"]
+atlas = ExtResource("2_77jvo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd6db"]
+atlas = ExtResource("2_77jvo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg1ek"]
+atlas = ExtResource("2_77jvo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_865hp"]
+atlas = ExtResource("2_77jvo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se6r7"]
+atlas = ExtResource("2_77jvo")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5gyr"]
+atlas = ExtResource("2_77jvo")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6fpd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6okuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd6db")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg1ek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_865hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_se6r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5gyr")
+}],
+"loop": 2,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fpd1"]
+size = Vector2(20, 31)
+
+[node name="P1" type="CharacterBody2D" unique_id=1462715840]
+script = ExtResource("1_osyf6")
+
+[node name="SpeechBubbleMarker2D" type="Marker2D" parent="." unique_id=482530870]
+position = Vector2(10, -27)
+
+[node name="FootOffset" type="Node2D" parent="." unique_id=1453161734]
+position = Vector2(0, -16)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FootOffset" unique_id=1469094053]
+sprite_frames = SubResource("SpriteFrames_6fpd1")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.6585231
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1400925074]
+position = Vector2(2, -16)
+shape = SubResource("RectangleShape2D_6fpd1")

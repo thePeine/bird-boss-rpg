@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyfpyklbvgbir"
-path="res://.godot/imported/Background.png-18f35da2badaef98c2419baeef5c544a.ctex"
+uid="uid://d4bbq8q5m3usb"
+path="res://.godot/imported/boxer1walkside-Sheet.png-98dda5c4bbf24a8a3edb01fd83fb08b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TopLevelScenes/Background.png"
-dest_files=["res://.godot/imported/Background.png-18f35da2badaef98c2419baeef5c544a.ctex"]
+source_file="res://AssetDump/boxer1walkside-Sheet.png"
+dest_files=["res://.godot/imported/boxer1walkside-Sheet.png-98dda5c4bbf24a8a3edb01fd83fb08b0.ctex"]
 
 [params]
 

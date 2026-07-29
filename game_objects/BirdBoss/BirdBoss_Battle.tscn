@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bq61hl7q3sv1y"]
+
+[ext_resource type="Script" uid="uid://vbj5swe28xhl" path="res://game_objects/BirdBoss/BirdBoss_battle.gd" id="1_u2vvl"]
+[ext_resource type="Texture2D" uid="uid://dvir4xrdrt2fr" path="res://game_objects/BirdBoss/birdv2-Sheet.png" id="2_rifmf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsv0v"]
+atlas = ExtResource("2_rifmf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2bba"]
+atlas = ExtResource("2_rifmf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv7gt"]
+atlas = ExtResource("2_rifmf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6k2b"]
+atlas = ExtResource("2_rifmf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i67s5"]
+atlas = ExtResource("2_rifmf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaj3s"]
+atlas = ExtResource("2_rifmf")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vgnb0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsv0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2bba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv7gt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6k2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i67s5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iaj3s")
+}],
+"loop": 2,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exrw7"]
+size = Vector2(30, 28)
+
+[node name="BirdBossBattle" type="CharacterBody2D" unique_id=1998535341]
+script = ExtResource("1_u2vvl")
+
+[node name="SpeechBubbleMarker2D" type="Marker2D" parent="." unique_id=1199015393]
+position = Vector2(-15, -26)
+
+[node name="FootOffset" type="Node2D" parent="." unique_id=149745026]
+position = Vector2(0, -16)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FootOffset" unique_id=2118752273]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_vgnb0")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1037789422]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_exrw7")

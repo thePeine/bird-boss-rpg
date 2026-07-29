@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crsfj12gch3xe"
-path="res://.godot/imported/BirdBoss.png-6b630a762f14b561e740def5bada4e16.ctex"
+uid="uid://b46d4cvymrvih"
+path="res://.godot/imported/boxeridle1backrast-Sheet.png-73d5b04c244dcf9ce2e820dfce557548.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_objects/BirdBoss/BirdBoss.png"
-dest_files=["res://.godot/imported/BirdBoss.png-6b630a762f14b561e740def5bada4e16.ctex"]
+source_file="res://AssetDump/boxeridle1backrast-Sheet.png"
+dest_files=["res://.godot/imported/boxeridle1backrast-Sheet.png-73d5b04c244dcf9ce2e820dfce557548.ctex"]
 
 [params]
 

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b52mhntaejc0i"]
+
+[ext_resource type="Script" uid="uid://dr15se4b8lruj" path="res://TopLevelScenes/Battle/Battle_SelectAction/battle_select_action.gd" id="1_5axyc"]
+[ext_resource type="FontFile" uid="uid://1hcng26cbn6y" path="res://PressStart2P-Regular.ttf" id="2_pyewl"]
+
+[node name="BattleSelectAction" type="Node2D" unique_id=1915518346]
+script = ExtResource("1_5axyc")
+radius_x = 22.0
+font = ExtResource("2_pyewl")

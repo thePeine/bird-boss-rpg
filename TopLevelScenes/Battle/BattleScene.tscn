@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://crpbmw1cjdkkn"]
+
+[ext_resource type="Script" uid="uid://dlr1lxs64o3v4" path="res://TopLevelScenes/Battle/battle_scene.gd" id="1_2it72"]
+
+[node name="BattleScene" type="Node2D" unique_id=1109514686]
+script = ExtResource("1_2it72")
+
+[node name="PlayerSpawn_1" type="Marker2D" parent="." unique_id=1728894668]
+position = Vector2(86, 144)
+
+[node name="PlayerSpawn_2" type="Marker2D" parent="." unique_id=2040779436]
+position = Vector2(67, 101)
+
+[node name="PlayerSpawn_3" type="Marker2D" parent="." unique_id=860536232]
+position = Vector2(44, 156)
+
+[node name="PlayerSpawn_4" type="Marker2D" parent="." unique_id=1623089545]
+position = Vector2(29, 121)
+
+[node name="EnemySpawn_1" type="Marker2D" parent="." unique_id=510007799]
+position = Vector2(226, 124)
+
+[node name="EnemySpawn_2" type="Marker2D" parent="." unique_id=2011460956]
+position = Vector2(263, 79)
+
+[node name="EnemySpawn_3" type="Marker2D" parent="." unique_id=182976804]
+position = Vector2(261, 148)
+
+[node name="EnemySpawn_4" type="Marker2D" parent="." unique_id=1654342335]
+position = Vector2(294, 116)
+
+[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=1332967684]
+centered = false
+
+[node name="Combantants" type="Node2D" parent="." unique_id=992574726]

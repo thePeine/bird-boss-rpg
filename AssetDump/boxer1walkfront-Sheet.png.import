@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfi261kli31qk"
-path="res://.godot/imported/boxerrasterized-Sheet.png-1ee2ee70bb11e2d68bf7f3acb578b362.ctex"
+uid="uid://3n0snwkba1ip"
+path="res://.godot/imported/boxer1walkfront-Sheet.png-044b01c56423d933542e1d25afb810ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://AssetDump/boxerrasterized-Sheet.png"
-dest_files=["res://.godot/imported/boxerrasterized-Sheet.png-1ee2ee70bb11e2d68bf7f3acb578b362.ctex"]
+source_file="res://AssetDump/boxer1walkfront-Sheet.png"
+dest_files=["res://.godot/imported/boxer1walkfront-Sheet.png-044b01c56423d933542e1d25afb810ab.ctex"]
 
 [params]
 

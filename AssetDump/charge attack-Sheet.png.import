@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvximob2lpv4k"
-path="res://.godot/imported/P1.png-696148ddc5f458ad2b5a10a3b418ec4a.ctex"
+uid="uid://csrqsw2h3v5xl"
+path="res://.godot/imported/charge attack-Sheet.png-100c2bde05603806ee3b88ed45a05099.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_objects/Player1/P1.png"
-dest_files=["res://.godot/imported/P1.png-696148ddc5f458ad2b5a10a3b418ec4a.ctex"]
+source_file="res://AssetDump/charge attack-Sheet.png"
+dest_files=["res://.godot/imported/charge attack-Sheet.png-100c2bde05603806ee3b88ed45a05099.ctex"]
 
 [params]
 

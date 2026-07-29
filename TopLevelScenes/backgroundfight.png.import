@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ig76qgfi6x36"
-path="res://.godot/imported/boxerrasterized2-Sheet.png-a1ef54c32b6326917fc6a3e4f779da93.ctex"
+uid="uid://domkcgj5104lg"
+path="res://.godot/imported/backgroundfight.png-818aec1ad66fbc6fee9b06a1a35854c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://AssetDump/boxerrasterized2-Sheet.png"
-dest_files=["res://.godot/imported/boxerrasterized2-Sheet.png-a1ef54c32b6326917fc6a3e4f779da93.ctex"]
+source_file="res://TopLevelScenes/backgroundfight.png"
+dest_files=["res://.godot/imported/backgroundfight.png-818aec1ad66fbc6fee9b06a1a35854c3.ctex"]
 
 [params]
 
