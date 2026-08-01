@@ -74,3 +74,9 @@ autoplay = "idle"
 position = Vector2(1, -16)
 shape = SubResource("RectangleShape2D_eek2y")
 disabled = true
+
+[node name="ActiveCombatantMarker" type="Marker2D" parent="." unique_id=1889554643]
+position = Vector2(0, -33)
+
+[node name="HitTarget" type="Marker2D" parent="." unique_id=1424465409]
+position = Vector2(7, -24)

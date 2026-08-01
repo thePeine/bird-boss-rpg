@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceConstant" format=3 uid="uid://cvd7ol5t2etp2"]
+
+[ext_resource type="FontFile" uid="uid://1hcng26cbn6y" path="res://PressStart2P-Regular.ttf" id="1_pwojl"]
+[ext_resource type="Script" uid="uid://d4lx5dyv4o8ro" path="res://Autoloads/ResourceConfig.gd" id="2_vucbs"]
+
+[resource]
+script = ExtResource("2_vucbs")
+PIXEL_FONT = ExtResource("1_pwojl")
+metadata/_custom_type_script = "uid://d4lx5dyv4o8ro"

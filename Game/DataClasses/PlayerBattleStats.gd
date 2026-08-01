@@ -9,4 +9,3 @@ enum PlayerType {NONE, P1, P2, BirdBoss}
 
 @export var battle_attacks: Array[BattleAttackData] = []
 @export var type: PlayerType = PlayerType.NONE
- 

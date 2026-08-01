@@ -2,27 +2,7 @@
   "messages": [
     { 
       "owner_name": "P1", 
-      "message_text": "Yup.  That's the guy, P2.  We can't let him get away!"
-    },
-    { 
-      "owner_name": "P2", 
-      "message_text": "Um, you sure P1?  That just looks like a bird"
-    },
-    { 
-      "owner_name": "P1", 
-      "message_text": "Yeah, that's the guy that keeps taking my keys, and hides them in all the strangest places"
-    },
-    { 
-      "owner_name": "P2", 
-      "message_text": "What, like your pockets?"
-    },
-    { 
-      "owner_name": "P1", 
-      "message_text": "How'd you know?"
-    },
-    { 
-      "owner_name": "BirdBoss", 
-      "message_text": "Squak!"
+      "message_text": "TEST"
     }
   ]
 }

@@ -41,17 +41,19 @@ func _physics_process(delta: float) -> void:
         return
         
     var directionX := Input.get_axis("ui_left", "ui_right")
-    if directionX:
-        velocity.x = directionX * SPEED
-    else:
-        velocity.x = move_toward(velocity.x, 0, SPEED)
-    
     var directionY := Input.get_axis("ui_up", "ui_down")
-    if directionY:
-        velocity.y = directionY * SPEED
+    if directionX and directionY:
+        velocity = Vector2(directionX, directionY).normalized()
+        velocity *= SPEED
+    elif directionX:
+        velocity.x = directionX * SPEED
+        velocity.y = move_toward(velocity.y, 0, SPEED)
+    elif directionY:
+        velocity.y = directionY * SPEED        
+        velocity.x = move_toward(velocity.x, 0, SPEED)
     else:
         velocity.y = move_toward(velocity.y, 0, SPEED)
-        
+        velocity.x = move_toward(velocity.x, 0, SPEED)        
     move_and_slide()
     var num_collisions := get_slide_collision_count()
     if num_collisions > 0:

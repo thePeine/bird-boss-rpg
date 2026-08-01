@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://coxiik1vnhuqm"]
+
+[ext_resource type="Script" uid="uid://d4lx5dyv4o8ro" path="res://Autoloads/ResourceConfig.gd" id="1_dukbn"]
+[ext_resource type="FontFile" uid="uid://1hcng26cbn6y" path="res://PressStart2P-Regular.ttf" id="2_siyb5"]
+
+[node name="ResourceConstants" type="Node" unique_id=1995432390]
+script = ExtResource("1_dukbn")
+PIXEL_FONT = ExtResource("2_siyb5")

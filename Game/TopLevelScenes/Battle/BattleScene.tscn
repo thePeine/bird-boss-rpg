@@ -1,35 +1,153 @@
 [gd_scene format=3 uid="uid://crpbmw1cjdkkn"]
 
 [ext_resource type="Script" uid="uid://dlr1lxs64o3v4" path="res://TopLevelScenes/Battle/battle_scene.gd" id="1_2it72"]
+[ext_resource type="Texture2D" uid="uid://c1mrlqn6of0k1" path="res://TopLevelScenes/Battle/selectionarrownormal.png" id="2_p2y88"]
+[ext_resource type="Script" uid="uid://dr15se4b8lruj" path="res://TopLevelScenes/Battle/Battle_SelectAction/battle_select_action.gd" id="3_sokgc"]
+[ext_resource type="FontFile" uid="uid://1hcng26cbn6y" path="res://PressStart2P-Regular.ttf" id="4_p2y88"]
+[ext_resource type="Texture2D" uid="uid://dvc0syuunk0fd" path="res://TopLevelScenes/Battle/selectionarrowchoose-Sheet.png" id="5_p2y88"]
+[ext_resource type="Texture2D" uid="uid://cfsq0y27ioe2i" path="res://TopLevelScenes/Battle/StatsUI.png" id="6_ktywu"]
+
+[sub_resource type="Gradient" id="Gradient_y74sg"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.63432837, 0.7104478)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7u1xa"]
+gradient = SubResource("Gradient_y74sg")
+width = 400
+height = 400
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktywu"]
+atlas = ExtResource("5_p2y88")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsn0i"]
+atlas = ExtResource("5_p2y88")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6fpd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktywu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsn0i")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="BattleScene" type="Node2D" unique_id=1109514686]
 script = ExtResource("1_2it72")
 
 [node name="PlayerSpawn_1" type="Marker2D" parent="." unique_id=1728894668]
-position = Vector2(86, 144)
+position = Vector2(90, 122)
 
 [node name="PlayerSpawn_2" type="Marker2D" parent="." unique_id=2040779436]
-position = Vector2(67, 101)
+position = Vector2(67, 86)
 
 [node name="PlayerSpawn_3" type="Marker2D" parent="." unique_id=860536232]
-position = Vector2(44, 156)
+position = Vector2(31, 119)
 
 [node name="PlayerSpawn_4" type="Marker2D" parent="." unique_id=1623089545]
-position = Vector2(29, 121)
+position = Vector2(21, 85)
 
 [node name="EnemySpawn_1" type="Marker2D" parent="." unique_id=510007799]
-position = Vector2(226, 124)
+position = Vector2(238, 93)
 
 [node name="EnemySpawn_2" type="Marker2D" parent="." unique_id=2011460956]
-position = Vector2(263, 79)
+position = Vector2(269, 72)
 
 [node name="EnemySpawn_3" type="Marker2D" parent="." unique_id=182976804]
-position = Vector2(261, 148)
+position = Vector2(265, 119)
 
 [node name="EnemySpawn_4" type="Marker2D" parent="." unique_id=1654342335]
-position = Vector2(294, 116)
+position = Vector2(296, 96)
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=1332967684]
 centered = false
 
+[node name="TransitionCircle" type="Sprite2D" parent="." unique_id=935182478]
+z_index = 5
+position = Vector2(160, 90)
+scale = Vector2(0.02, 0.02)
+texture = SubResource("GradientTexture2D_7u1xa")
+
 [node name="Combantants" type="Node2D" parent="." unique_id=992574726]
+
+[node name="ActiveCombatantIndicator" type="Sprite2D" parent="." unique_id=1537588342]
+position = Vector2(115, -8)
+texture = ExtResource("2_p2y88")
+offset = Vector2(0, -8.115)
+
+[node name="battle_select_action" type="Node2D" parent="." unique_id=654327246]
+position = Vector2(0, -68)
+script = ExtResource("3_sokgc")
+radius_x = 30.0
+radius_z = 30.0
+font = ExtResource("4_p2y88")
+metadata/_custom_type_script = "uid://dr15se4b8lruj"
+
+[node name="TargetSelector" type="AnimatedSprite2D" parent="." unique_id=1647864437]
+position = Vector2(136, -8)
+sprite_frames = SubResource("SpriteFrames_6fpd1")
+autoplay = "default"
+frame_progress = 0.91801804
+offset = Vector2(0, -8)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1765839618]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=957831200]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1599557268]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ktywu")
+
+[node name="P1Stats" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect" unique_id=1275636569]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 8.0
+offset_right = -222.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_p2y88")
+theme_override_font_sizes/normal_font_size = 10
+text = "HP: 200
+PP: 72"
+
+[node name="P2Stats" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect" unique_id=933060298]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 166.0
+offset_top = 8.0
+offset_right = -66.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_p2y88")
+theme_override_font_sizes/normal_font_size = 10
+text = "HP: 200
+PP: 72"

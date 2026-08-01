@@ -1,7 +1,8 @@
 class_name battle_select_action
 extends Node2D
 
-var item_nodes: Array[ColorRect] 
+var item_nodes: Array[TextureRect] 
+var actions: Array[BattleAttackData]
 var current_selected_item_index: int
 
 @export var radius_x: float = 65.0     # Width of the wheel
@@ -10,54 +11,61 @@ var current_selected_item_index: int
 
 # Rotate my circle so that the 1st entry is always in the front (By default, the first entry is on the Right)
 const angle_adjust : float = PI / 2
-signal on_action_selected(action_name: String)
+signal on_action_selected(action: BattleAttackData)
 
+var enabled: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     visible = false
+    enabled = false
 
-func set_actions(in_action_names: Array[String]) -> void:
-    for  action_name in in_action_names:
-        
-        var label: Label = Label.new()
-        label.text = action_name
-        label.add_theme_font_override("font", font)
-        label.add_theme_font_size_override("font_size", 8)
-        label.set_anchors_preset(Control.PRESET_FULL_RECT)
+func get_current_selected_item() -> BattleAttackData:
+    return actions[current_selected_item_index]
     
-        label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-        label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    
-        var color_rect: ColorRect = ColorRect.new()
-        color_rect.color = Color(0, 0, 1, 1)
-        color_rect.size = Vector2(12,12)
-        color_rect.add_child(label)
+func set_actions(in_actions: Array[BattleAttackData]) -> void:
+    actions = in_actions
+    item_nodes.clear()
+    for child in get_children():
+        child.queue_free()
         
-        add_child(color_rect)
-        item_nodes.push_back(color_rect)
+    for  action in in_actions:
+        
+        var action_texture_rect: TextureRect = TextureRect.new()
+        action_texture_rect.texture = action.selection_texture
+        add_child(action_texture_rect)
+        item_nodes.push_back(action_texture_rect)
 
+    update_wheel()
+    
 func set_visibility(new_visibliity: bool) -> void:
     visible = new_visibliity
     if visible:
         current_selected_item_index = 0
+        enabled = true
         update_wheel()
+        modulate.a = 1
 
 func check_input() -> void:
-    var right := Input.is_action_just_pressed('ui_right')
-    var left := Input.is_action_just_pressed('ui_left')
-    
-    if right:
+    if Input.is_action_just_pressed('ui_right'):
         current_selected_item_index = posmod(current_selected_item_index + 1, item_nodes.size())
         update_wheel()
-    elif left:
+    elif Input.is_action_just_pressed('ui_left'):
         current_selected_item_index = posmod(current_selected_item_index - 1, item_nodes.size())
         update_wheel()
-    
+    elif Input.is_action_just_pressed('ui_accept'):
+        var tween := create_tween()
+        enabled = false
+        tween.tween_property(self, "modulate:a", 0.0, .4)
+        tween.finished.connect(func() -> void: 
+            visible = false
+            on_action_selected.emit(actions[current_selected_item_index])
+            modulate.a = 1
+        )
     
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-    if visible:
+    if enabled and visible:
         check_input()
 
 func update_wheel() -> void:
@@ -76,7 +84,7 @@ func update_wheel() -> void:
         var screen_y := z * 0.4 
         
         var item := item_nodes[i]
-        item.position = Vector2(screen_x, screen_y) - (item.size / 2.0).round()
+        item.position = Vector2(screen_x, screen_y) - (item.size / 2.0).round() + Vector2(0,-radius_z)
         item.z_index = int(z_factor * 100)
         
         if i == current_selected_item_index:

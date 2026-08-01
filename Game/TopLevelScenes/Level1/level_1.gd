@@ -68,7 +68,15 @@ func _on_collide_with_enemy(enemy: CharacterBody2D) -> void:
                 _waiting_for_force_move.push_back(p1)
                 _waiting_for_force_move.push_back(p2)
                 
-                
+func _input(event: InputEvent) -> void:
+    if event is InputEventKey:
+        var input_event_key : InputEventKey = event as InputEvent
+        if input_event_key.pressed and not input_event_key.echo:
+            if input_event_key.physical_keycode == KEY_S:
+                dialog_node_2d.visible = false
+                _state = Level1_State.Battle
+                BattleManager.battle_manager_start_battle(battle_background, [PlayerBattleStats.PlayerType.P1, PlayerBattleStats.PlayerType.P2], [PlayerBattleStats.PlayerType.BirdBoss])
+                                
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
     if _state == Level1_State.ForceMovingPlayers:
@@ -76,7 +84,3 @@ func _process(delta: float) -> void:
             dialog_node_2d.visible = true
             dialog_node_2d.start_dialog_from_beginning()
             _state = Level1_State.Dialog
-            
-    if false:
-        BattleManager.battle_manager_start_battle(battle_background, [PlayerBattleStats.PlayerType.P1, PlayerBattleStats.PlayerType.P2], [PlayerBattleStats.PlayerType.BirdBoss])
-    pass
