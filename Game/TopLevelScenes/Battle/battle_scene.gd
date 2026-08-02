@@ -14,11 +14,13 @@ var _state: BattleSceneState:
         battle_select_action.visible = false
         transition_circle.visible = false
         combatants_parent_node.visible = false
+        bottom_panel.visible = true
         
         match _state:
             BattleSceneState.INTRO:
                 transition_circle.visible = true
                 transition_circle.scale = Vector2(.05, .05)
+                bottom_panel.visible = false
             BattleSceneState.SELECTING_ACTION:
                 combatants_parent_node.visible = true
                 active_combatant_indicator.visible = true
@@ -32,6 +34,7 @@ var _state: BattleSceneState:
             BattleSceneState.INACTIVE:
                 pass
                               
+@onready var bottom_panel: Control = $CanvasLayer/BottomPanel
 
 @onready var transition_circle: Sprite2D = $TransitionCircle
 @onready var player_spawn_1: Marker2D = $PlayerSpawn_1
@@ -56,6 +59,8 @@ const P1_COMBATANT_SCENE =          preload("res://game_objects/Player1/P1_Battl
 const P2_COMBATANT_SCENE =          preload("res://game_objects/Player2/P2_Battle.tscn")
 const BIRD_BOSS_COMBATANT_SCENE =   preload("res://game_objects/BirdBoss/BirdBoss_Battle.tscn")
 
+
+
 var turn_queue: Array[Combatant] = []
 var player_combarants: Array[Combatant] = []
 var enemy_combarants: Array[Combatant] = []
@@ -73,9 +78,13 @@ func _instantiate_and_add_combatant_from_type(player_type: PlayerBattleStats.Pla
         PlayerBattleStats.PlayerType.NONE:
             push_error("Can't have a type == NONE.  I don't know how to create that")
         PlayerBattleStats.PlayerType.P1:
-            combatant = P1_COMBATANT_SCENE.instantiate() as Combatant
+            var p1 := P1_COMBATANT_SCENE.instantiate() as p1_combatant
+            p1.party_member_name = PartyManager.P1_Name
+            combatant = p1
         PlayerBattleStats.PlayerType.P2:
-            combatant = P2_COMBATANT_SCENE.instantiate() as Combatant
+            var p2 := P1_COMBATANT_SCENE.instantiate() as p1_combatant
+            p2.party_member_name = PartyManager.P2_Name
+            combatant = p2
         PlayerBattleStats.PlayerType.BirdBoss:
             combatant = BIRD_BOSS_COMBATANT_SCENE.instantiate() as Combatant
     

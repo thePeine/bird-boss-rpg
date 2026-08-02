@@ -13,7 +13,7 @@ func execute_action(action: BattleAttackData, target: Combatant) -> void:
      print("Executing action " + action.display_string + " on target " + target.name)
     
 func get_available_actions() -> Array[BattleAttackData]:
-    return [GS.KnownAttacks.get_attack("PlayerRegPunch"), GS.KnownAttacks.get_attack("PlayerUseItem"), GS.KnownAttacks.get_attack("PlayerBroAttack")]
+  return PartyManager.get_party_member(PartyManager.BirdBoss_Name).battle_attacks
 
 func take_damage(amount: int) -> void:
     super.take_damage(amount)

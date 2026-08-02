@@ -96,12 +96,12 @@ metadata/_custom_type_script = "uid://dr15se4b8lruj"
 position = Vector2(136, -8)
 sprite_frames = SubResource("SpriteFrames_6fpd1")
 autoplay = "default"
-frame_progress = 0.91801804
+frame_progress = 0.07731457
 offset = Vector2(0, -8)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1765839618]
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=957831200]
+[node name="BottomPanel" type="Control" parent="CanvasLayer" unique_id=957831200]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 3
 anchors_preset = 12
@@ -111,7 +111,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1599557268]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BottomPanel" unique_id=1599557268]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,7 +120,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_ktywu")
 
-[node name="P1Stats" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect" unique_id=1275636569]
+[node name="P1Stats" type="RichTextLabel" parent="CanvasLayer/BottomPanel/TextureRect" unique_id=1275636569]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,7 +136,7 @@ theme_override_font_sizes/normal_font_size = 10
 text = "HP: 200
 PP: 72"
 
-[node name="P2Stats" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect" unique_id=933060298]
+[node name="P2Stats" type="RichTextLabel" parent="CanvasLayer/BottomPanel/TextureRect" unique_id=933060298]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
