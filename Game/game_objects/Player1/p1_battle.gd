@@ -53,8 +53,8 @@ func take_damage(amount: int) -> Variant:
 func _ready() -> void:
     _state = State.WAITING
     aim_tween = create_tween().set_loops()
-    aim_tween.tween_property(aimball, "position", aimball_end.position, 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT) # Fade out over 1 second
-    aim_tween.tween_property(aimball, "position", aimball_start.position, 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT) # Fade in over 1 second
+    aim_tween.tween_property(aimball, "position", aimball_end.position, 2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT) # Fade out over 1 second
+    aim_tween.tween_property(aimball, "position", aimball_start.position, 2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT) # Fade in over 1 second
     
     if party_member_name == "p2":
         var shader_material: ShaderMaterial = animated_sprite_2d.material.duplicate()

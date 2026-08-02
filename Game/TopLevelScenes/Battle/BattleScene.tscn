@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dvc0syuunk0fd" path="res://TopLevelScenes/Battle/selectionarrowchoose-Sheet.png" id="5_p2y88"]
 [ext_resource type="Texture2D" uid="uid://cfsq0y27ioe2i" path="res://TopLevelScenes/Battle/StatsUI.png" id="6_ktywu"]
 [ext_resource type="Texture2D" uid="uid://5pca52sqedf1" path="res://TopLevelScenes/Battle/TransitionBattlev2-Sheet.png" id="7_hsn0i"]
+[ext_resource type="AudioStream" uid="uid://b4m70xvn5uftr" path="res://TopLevelScenes/Battle/battle.mp3" id="8_5bnu8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktywu"]
 atlas = ExtResource("5_p2y88")
@@ -253,3 +254,7 @@ sprite_frames = SubResource("SpriteFrames_y74sg")
 frame = 14
 frame_progress = 1.0
 centered = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2059526079]
+stream = ExtResource("8_5bnu8")
+autoplay = true
