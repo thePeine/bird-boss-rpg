@@ -1,7 +1,7 @@
 class_name BattleScene
 extends Node2D
 
-enum BattleSceneState {INACTIVE, INTRO, SELECTING_ACTION, SELECTING_TARGET, WAITING_FOR_ACTION}
+enum BattleSceneState {INACTIVE, INTRO, SELECTING_ACTION, SELECTING_TARGET, WAITING_FOR_ACTION, AUTOMATED}
 
 var _state: BattleSceneState:
     get:
@@ -128,9 +128,10 @@ func setup_battle(background_texture: Texture2D, player_party_data: Array[Player
 
 
 func execute_turn_start() -> void:
-    battle_select_action.set_actions(active_combatant.get_available_actions())
+    battle_select_action.set_actions(active_combatant.get_available_actions(), active_combatant in enemy_combarants)
     battle_select_action.global_position = active_combatant.get_active_combatant_marker().global_position
     active_combatant_indicator.global_position = active_combatant.get_active_combatant_marker().global_position
+    active_combatant.your_turn_started(self)
     _state = BattleSceneState.SELECTING_ACTION
     
 func execute_next_turn() -> void:
@@ -152,6 +153,31 @@ func _on_combatant_died() -> void:
     # Check win/loss conditions here
     print("A combatant has fallen.")
 
+func force_select_target(target: Combatant) -> void:
+    var index_to_select := player_combarants.find(target)
+    if index_to_select == -1:
+        push_error("called force_select on an action that didn't exist on that player....just skip it")
+        execute_next_turn()
+    
+    await get_tree().create_timer(0.5).timeout
+    if not index_to_select == target_selection_index:
+        var diff : int = abs(index_to_select - target_selection_index)
+        var direction := -1 if index_to_select < target_selection_index else 1
+        for i in range(diff):
+            target_selection_index = posmod(target_selection_index + direction, player_combarants.size())
+            target_selector.global_position = player_combarants[target_selection_index].get_active_combatant_marker().global_position
+            await get_tree().create_timer(0.5).timeout
+    
+    active_combatant.execute_action(battle_select_action.get_current_selected_item(), player_combarants[index_to_select])
+    _state = BattleSceneState.WAITING_FOR_ACTION
+
+func _input(event: InputEvent) -> void:
+    if event is InputEventKey:
+        var input_event_key : InputEventKey = event as InputEvent
+        if input_event_key.pressed and not input_event_key.echo:
+            if input_event_key.physical_keycode == KEY_S:
+                execute_next_turn()
+                
 func _process(delta: float) -> void:
     match _state:
         BattleSceneState.INTRO:
@@ -163,7 +189,11 @@ func _process(delta: float) -> void:
                 execute_turn_start()
         BattleSceneState.SELECTING_ACTION:
             return
+        BattleSceneState.AUTOMATED:
+            return
         BattleSceneState.SELECTING_TARGET:
+            if active_combatant in enemy_combarants:
+                return
             var target_array := enemy_combarants if active_combatant in player_combarants else player_combarants
             if Input.is_action_just_pressed('ui_accept'):
                 active_combatant.execute_action(battle_select_action.get_current_selected_item(), target_array[target_selection_index])

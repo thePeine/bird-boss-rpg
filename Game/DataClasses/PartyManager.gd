@@ -21,7 +21,7 @@ const BirdBoss_Name = "birdboss"
 var _party: Dictionary = {
     P1_Name: PlayerBattleStats.new(100, 100, 50, 50, 1, [create_player_punch_attack(),create_player_use_item(),create_player_bro_attack() ], PlayerBattleStats.PlayerType.P1),
     P2_Name: PlayerBattleStats.new(100, 100, 50, 50, 1, [create_player_punch_attack(),create_player_use_item(),create_player_bro_attack() ], PlayerBattleStats.PlayerType.P2),
-    BirdBoss_Name: PlayerBattleStats.new(200, 200, 15, 15, 3, [create_bird_boss_attack()], PlayerBattleStats.PlayerType.BirdBoss)
+    BirdBoss_Name: PlayerBattleStats.new(200, 200, 15, 15, 3, [create_bird_boss_attack(),create_player_use_item()], PlayerBattleStats.PlayerType.BirdBoss)
 }
 
 func get_party_member(name: String) -> PlayerBattleStats:

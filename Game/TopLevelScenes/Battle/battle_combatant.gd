@@ -6,6 +6,7 @@ extends CharacterBody2D
 signal turn_completed(action_data: Dictionary)
 signal died
 
+@abstract func your_turn_started(battle_scene: BattleScene) -> void
 @abstract func execute_action(action: BattleAttackData, target: Combatant) -> void
 @abstract func get_active_combatant_marker() -> Marker2D
 @abstract func get_available_actions() -> Array[BattleAttackData]

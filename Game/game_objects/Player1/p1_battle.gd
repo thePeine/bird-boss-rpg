@@ -88,6 +88,7 @@ func execute_simple_punch() -> void:
     await aimball_executed
     aim_tween.pause()
     
+    aim_text.visible = true
     var pixels_from_perfect := (aimball.position - ((aimball_end.position + aimball_start.position)/2)).length()
     if pixels_from_perfect <= 5:
         aim_text.play("excellent")
@@ -98,6 +99,7 @@ func execute_simple_punch() -> void:
         
     await aim_text.animation_finished
     aim_text.play("default")
+    aim_text.visible = false
     
     aimer.visible = false
     animated_sprite_2d.play("charged_punch")
@@ -113,3 +115,6 @@ func execute_simple_punch() -> void:
     animated_sprite_2d.play("idle")
     _state = State.WAITING
     turn_completed.emit({})
+
+func your_turn_started(battle_scene: BattleScene) -> void:
+    _state = State.WAITING

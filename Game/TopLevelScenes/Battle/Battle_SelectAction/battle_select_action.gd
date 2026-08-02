@@ -14,6 +14,7 @@ const angle_adjust : float = PI / 2
 signal on_action_selected(action: BattleAttackData)
 
 var enabled: bool
+var is_automated: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,7 +24,8 @@ func _ready() -> void:
 func get_current_selected_item() -> BattleAttackData:
     return actions[current_selected_item_index]
     
-func set_actions(in_actions: Array[BattleAttackData]) -> void:
+func set_actions(in_actions: Array[BattleAttackData], in_is_automated: bool) -> void:
+    is_automated = in_is_automated
     actions = in_actions
     item_nodes.clear()
     for child in get_children():
@@ -46,6 +48,26 @@ func set_visibility(new_visibliity: bool) -> void:
         update_wheel()
         modulate.a = 1
 
+func force_select(to_select: BattleAttackData) -> void:
+    
+    var index_to_select := actions.find(to_select)
+    if index_to_select == -1:
+        push_error("called force_select on an action that didn't exist on that player....just skip it")
+        on_action_selected.emit(actions[current_selected_item_index])
+    
+    await get_tree().create_timer(0.5).timeout
+    if not index_to_select == current_selected_item_index:
+        var diff : int = abs(index_to_select - current_selected_item_index)
+        var direction := -1 if index_to_select < current_selected_item_index else 1
+        for i in range(diff):
+            current_selected_item_index = posmod(current_selected_item_index + direction, item_nodes.size())
+            update_wheel()
+            await get_tree().create_timer(0.5).timeout
+    
+    visible = false
+    enabled = false
+    on_action_selected.emit(actions[current_selected_item_index])
+    
 func check_input() -> void:
     if Input.is_action_just_pressed('ui_right'):
         current_selected_item_index = posmod(current_selected_item_index + 1, item_nodes.size())
@@ -65,7 +87,7 @@ func check_input() -> void:
     
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-    if enabled and visible:
+    if enabled and visible and not is_automated:
         check_input()
 
 func update_wheel() -> void:
