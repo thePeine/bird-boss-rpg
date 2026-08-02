@@ -4,19 +4,24 @@ extends CharacterBody2D
 
 
 signal turn_completed(action_data: Dictionary)
-signal died
+signal died(combatant: Combatant)
+signal stats_updated(combatant: Combatant)
 
-@abstract func your_turn_started(battle_scene: BattleScene) -> void
+@abstract func your_turn_started() -> void
 @abstract func execute_action(action: BattleAttackData, target: Combatant) -> void
 @abstract func get_active_combatant_marker() -> Marker2D
 @abstract func get_available_actions() -> Array[BattleAttackData]
+@abstract func get_stats() -> PlayerBattleStats
 
-@abstract func is_dead() -> bool
+var battle_scene: BattleScene
 
 func get_hit_target_marker() -> Marker2D:
     return $HitTarget
 
-func take_damage(amount: int) -> void:
+func is_dead() -> bool:
+    return get_stats().current_health <= 0
+    
+func take_damage(amount: int) -> Variant:
     var label := Label.new()
     label.text = str(amount)
     label.add_theme_font_override("font", GLOBAL_CONST.RESOURCES.PIXEL_FONT)
@@ -28,7 +33,6 @@ func take_damage(amount: int) -> void:
     
     label.global_position = get_hit_target_marker().global_position
     
-    var pivot_offset := label.size / 2
     var tween := create_tween().set_parallel(true)
     tween.tween_property(label, "position", position + Vector2(0, -50), 0.8)
     tween.tween_property(label, "scale", Vector2(1.2, 1.2), 0.2)
@@ -37,5 +41,10 @@ func take_damage(amount: int) -> void:
     tween.chain().tween_callback(label.queue_free)
     
     get_tree().root.add_child(label)
+    await tween.finished
+    get_stats().current_health = max(0,  get_stats().current_health - amount)
     
-    print("Damage")
+    stats_updated.emit(self)
+    if is_dead():
+        died.emit(self)
+    return null

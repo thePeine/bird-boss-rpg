@@ -6,18 +6,7 @@
 [ext_resource type="FontFile" uid="uid://1hcng26cbn6y" path="res://PressStart2P-Regular.ttf" id="4_p2y88"]
 [ext_resource type="Texture2D" uid="uid://dvc0syuunk0fd" path="res://TopLevelScenes/Battle/selectionarrowchoose-Sheet.png" id="5_p2y88"]
 [ext_resource type="Texture2D" uid="uid://cfsq0y27ioe2i" path="res://TopLevelScenes/Battle/StatsUI.png" id="6_ktywu"]
-
-[sub_resource type="Gradient" id="Gradient_y74sg"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0.63432837, 0.7104478)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7u1xa"]
-gradient = SubResource("Gradient_y74sg")
-width = 400
-height = 400
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[ext_resource type="Texture2D" uid="uid://5pca52sqedf1" path="res://TopLevelScenes/Battle/TransitionBattlev2-Sheet.png" id="7_hsn0i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktywu"]
 atlas = ExtResource("5_p2y88")
@@ -39,6 +28,119 @@ animations = [{
 "loop": 1,
 "name": &"default",
 "speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bnu8"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxpvw"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(320, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djf10"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(640, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxtjy"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(960, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6upy"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(1280, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81prr"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(1600, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmck3"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(1920, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvobf"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(2240, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skri6"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(2560, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkkct"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(2880, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48t5v"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(3200, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0jq7"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(3520, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cqfx"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(3840, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpg54"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(4160, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkg6l"]
+atlas = ExtResource("7_hsn0i")
+region = Rect2(4480, 0, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y74sg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bnu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxpvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djf10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxtjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6upy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81prr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmck3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvobf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skri6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkkct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48t5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0jq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cqfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpg54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkg6l")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 12.0
 }]
 
 [node name="BattleScene" type="Node2D" unique_id=1109514686]
@@ -70,12 +172,6 @@ position = Vector2(296, 96)
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=1332967684]
 centered = false
-
-[node name="TransitionCircle" type="Sprite2D" parent="." unique_id=935182478]
-z_index = 5
-position = Vector2(160, 90)
-scale = Vector2(0.02, 0.02)
-texture = SubResource("GradientTexture2D_7u1xa")
 
 [node name="Combantants" type="Node2D" parent="." unique_id=992574726]
 
@@ -151,3 +247,9 @@ theme_override_fonts/normal_font = ExtResource("4_p2y88")
 theme_override_font_sizes/normal_font_size = 10
 text = "HP: 200
 PP: 72"
+
+[node name="BattleTransition" type="AnimatedSprite2D" parent="." unique_id=218898934]
+sprite_frames = SubResource("SpriteFrames_y74sg")
+frame = 14
+frame_progress = 1.0
+centered = false

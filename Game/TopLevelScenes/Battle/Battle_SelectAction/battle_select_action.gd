@@ -86,7 +86,7 @@ func check_input() -> void:
         )
     
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     if enabled and visible and not is_automated:
         check_input()
 

@@ -78,7 +78,7 @@ func _input(event: InputEvent) -> void:
                 BattleManager.battle_manager_start_battle(battle_background, [PlayerBattleStats.PlayerType.P1, PlayerBattleStats.PlayerType.P2], [PlayerBattleStats.PlayerType.BirdBoss])
                                 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     if _state == Level1_State.ForceMovingPlayers:
         if _waiting_for_force_move.size() == 0:
             dialog_node_2d.visible = true

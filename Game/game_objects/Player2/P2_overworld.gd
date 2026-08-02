@@ -12,7 +12,6 @@ signal force_move_completed(entity: CharacterBody2D)
 @export var leader_character: CharacterBody2D
 @export var _num_steps_behind: int
 
-var _distace_from_following: Vector2
 var _steps_to_follow: Array[Vector2]
 var _next_step_index: int
 var _leader_last_position: Vector2

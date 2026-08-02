@@ -90,6 +90,10 @@ region = Rect2(448, 36, 64, 28)
 atlas = ExtResource("2_mkliv")
 region = Rect2(512, 36, 64, 28)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqofe"]
+atlas = ExtResource("2_ktia3")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6okuj"]
 atlas = ExtResource("2_ktia3")
 region = Rect2(0, 0, 32, 32)
@@ -212,6 +216,14 @@ animations = [{
 "loop": 0,
 "name": &"charging_punch",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqofe")
+}],
+"loop": 1,
+"name": &"dead",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -549,10 +561,8 @@ position = Vector2(0, -16)
 material = SubResource("ShaderMaterial_8qe0r")
 scale = Vector2(1, 1.0032407)
 sprite_frames = SubResource("SpriteFrames_cgcvk")
-animation = &"teleport_up"
+animation = &"dead"
 autoplay = "idle"
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1605123517]
 position = Vector2(2, -16)

@@ -8,6 +8,12 @@ uniform vec4 after_colors[MAX_COLORS] : source_color;
 uniform int active_color_count : hint_range(0, 12) = 10; 
 uniform float tolerance : hint_range(0.0, 0.1) = 0.01;
 
+varying vec4 modulate_color;
+
+void vertex() {
+    modulate_color = COLOR;
+}
+
 void fragment() {
     vec4 input_color = texture(TEXTURE, UV);
     
@@ -21,5 +27,5 @@ void fragment() {
         }
     }
     
-    COLOR = input_color;
+    COLOR = input_color * modulate_color;
 }

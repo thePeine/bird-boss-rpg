@@ -29,34 +29,6 @@ region = Rect2(128, 0, 32, 32)
 atlas = ExtResource("2_rifmf")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ensn1"]
-atlas = ExtResource("3_vgnb0")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sbk3s"]
-atlas = ExtResource("3_vgnb0")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3vl0w"]
-atlas = ExtResource("3_vgnb0")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3c0k8"]
-atlas = ExtResource("3_vgnb0")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kfe20"]
-atlas = ExtResource("3_vgnb0")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4t10x"]
-atlas = ExtResource("3_vgnb0")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eaqnp"]
-atlas = ExtResource("3_vgnb0")
-region = Rect2(384, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgnb0"]
 atlas = ExtResource("3_rifmf")
 region = Rect2(0, 0, 32, 32)
@@ -96,6 +68,59 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vgnb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exrw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70vrh")
+}],
+"loop": 0,
+"name": &"taking_damage",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exrw7"]
+size = Vector2(30, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ensn1"]
+atlas = ExtResource("3_vgnb0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbk3s"]
+atlas = ExtResource("3_vgnb0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vl0w"]
+atlas = ExtResource("3_vgnb0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c0k8"]
+atlas = ExtResource("3_vgnb0")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfe20"]
+atlas = ExtResource("3_vgnb0")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t10x"]
+atlas = ExtResource("3_vgnb0")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaqnp"]
+atlas = ExtResource("3_vgnb0")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6fpd1"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ensn1")
 }, {
 "duration": 1.0,
@@ -118,25 +143,8 @@ animations = [{
 }],
 "loop": 0,
 "name": &"slash_attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vgnb0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_exrw7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_70vrh")
-}],
-"loop": 0,
-"name": &"taking_damage",
-"speed": 5.0
+"speed": 10.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exrw7"]
-size = Vector2(30, 28)
 
 [node name="BirdBossBattle" type="CharacterBody2D" unique_id=1998535341]
 script = ExtResource("1_u2vvl")
@@ -150,10 +158,8 @@ position = Vector2(0, -16)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FootOffset" unique_id=2118752273]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vgnb0")
-animation = &"slash_attack"
+animation = &"Idle"
 autoplay = "Idle"
-frame = 6
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1037789422]
 position = Vector2(0, -14)
@@ -164,3 +170,8 @@ position = Vector2(0, -29)
 
 [node name="HitTarget" type="Marker2D" parent="." unique_id=1541716477]
 position = Vector2(-13, -23)
+
+[node name="AttackAnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=432624351]
+scale = Vector2(0.9947407, 1)
+sprite_frames = SubResource("SpriteFrames_6fpd1")
+animation = &"slash_attack"

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 BattleManager="*uid://c0btmsls5hsyc"
 PartyManager="*uid://qe4c0ykvf4g8"
 GLOBAL_CONST="*uid://b1ilwvgi0dr6n"
+SceneHelpers="*uid://dbdt0rt7a4mg2"
 
 [debug]
 
