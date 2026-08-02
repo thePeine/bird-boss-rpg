@@ -13,6 +13,7 @@ signal aimball_executed
 @onready var aimball: Sprite2D = $Aimer/Aimball
 @onready var aimball_end: Marker2D = $Aimer/AimballEnd
 @onready var aimball_start: Marker2D = $Aimer/AimballStart
+@onready var aim_text: AnimatedSprite2D = $Aimer/AimText
 
 @export var party_member_name: String
 
@@ -86,7 +87,18 @@ func execute_simple_punch() -> void:
     aim_tween.play()
     await aimball_executed
     aim_tween.pause()
-    await get_tree().create_timer(0.5).timeout
+    
+    var pixels_from_perfect := (aimball.position - ((aimball_end.position + aimball_start.position)/2)).length()
+    if pixels_from_perfect <= 5:
+        aim_text.play("excellent")
+    elif pixels_from_perfect <= 15:
+        aim_text.play("great")
+    else:
+        aim_text.play("good")
+        
+    await aim_text.animation_finished
+    aim_text.play("default")
+    
     aimer.visible = false
     animated_sprite_2d.play("charged_punch")
     _current_target_combatant.take_damage(5)

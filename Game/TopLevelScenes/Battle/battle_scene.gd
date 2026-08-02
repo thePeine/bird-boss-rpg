@@ -56,7 +56,6 @@ var _state: BattleSceneState:
 @onready var battle_select_action: battle_select_action = $battle_select_action
 
 const P1_COMBATANT_SCENE =          preload("res://game_objects/Player1/P1_Battle.tscn")
-const P2_COMBATANT_SCENE =          preload("res://game_objects/Player2/P2_Battle.tscn")
 const BIRD_BOSS_COMBATANT_SCENE =   preload("res://game_objects/BirdBoss/BirdBoss_Battle.tscn")
 
 

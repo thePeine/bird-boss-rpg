@@ -1,57 +1,15 @@
 [gd_scene format=3 uid="uid://qmyb85gjg0n6"]
 
 [ext_resource type="Script" uid="uid://c1mtq8ws008ha" path="res://game_objects/Player2/P2_overworld.gd" id="1_us5ah"]
-[ext_resource type="Texture2D" uid="uid://itgiixtw6tt7" path="res://game_objects/Player2/boxerrasterized2-Sheet.png" id="2_us6g5"]
+[ext_resource type="Shader" uid="uid://c88lw7uahsr27" path="res://game_objects/Player1/PlayerColorSwap.gdshader" id="2_m23l6"]
+[ext_resource type="SpriteFrames" uid="uid://durmpno573i4r" path="res://game_objects/Player1/p1_overworld_spriteframes.tres" id="3_vjr28"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t0cwd"]
-atlas = ExtResource("2_us6g5")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_21iym"]
-atlas = ExtResource("2_us6g5")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a2iui"]
-atlas = ExtResource("2_us6g5")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8houj"]
-atlas = ExtResource("2_us6g5")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gy3gg"]
-atlas = ExtResource("2_us6g5")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x4gu4"]
-atlas = ExtResource("2_us6g5")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6fpd1"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t0cwd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_21iym")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a2iui")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8houj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gy3gg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x4gu4")
-}],
-"loop": 2,
-"name": &"idle",
-"speed": 6.0
-}]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1tnm3"]
+shader = ExtResource("2_m23l6")
+shader_parameter/before_colors = PackedColorArray(0.7411765, 0.23137255, 0.23137255, 1, 0.6745098, 0.19607843, 0.19607843, 1, 0.80784315, 0.7019608, 0.26666668, 1, 0.9019608, 0.78431374, 0.29803923, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/after_colors = PackedColorArray(0.21960784, 0.29803923, 0.77254903, 1, 0.13725491, 0.2, 0.5803922, 1, 0.13725491, 0.5176471, 0.29803923, 1, 0.16470589, 0.6117647, 0.3529412, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/active_color_count = 10
+shader_parameter/tolerance = 0.01
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fpd1"]
 size = Vector2(20, 32)
@@ -66,7 +24,8 @@ position = Vector2(9, -29)
 position = Vector2(0, -16)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FootOffset" unique_id=676247132]
-sprite_frames = SubResource("SpriteFrames_6fpd1")
+material = SubResource("ShaderMaterial_1tnm3")
+sprite_frames = ExtResource("3_vjr28")
 animation = &"idle"
 autoplay = "idle"
 

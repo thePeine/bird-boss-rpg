@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://itgiixtw6tt7"
-path="res://.godot/imported/boxerrasterized2-Sheet.png-64711ce803158faf6b650cb8b4669453.ctex"
+uid="uid://h6n33ty4jwme"
+path="res://.godot/imported/excellenttext-Sheet.png-08eb63885ab4c02f77b3764b81562a2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_objects/Player2/boxerrasterized2-Sheet.png"
-dest_files=["res://.godot/imported/boxerrasterized2-Sheet.png-64711ce803158faf6b650cb8b4669453.ctex"]
+source_file="res://game_objects/Player1/excellenttext-Sheet.png"
+dest_files=["res://.godot/imported/excellenttext-Sheet.png-08eb63885ab4c02f77b3764b81562a2c.ctex"]
 
 [params]
 
