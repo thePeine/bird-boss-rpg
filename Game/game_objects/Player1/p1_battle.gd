@@ -35,26 +35,24 @@ var p2_palette := PackedColorArray([
 
 var aim_tween: Tween
 
-func take_damage(amount: int) -> Variant:
+func take_damage(task_queue: AsyncTaskQueue, amount: int) -> void:
+    super.take_damage(task_queue, amount)
+    task_queue.add_task_ref("charecter_damage_anim")
     animated_sprite_2d.play("taking_damage")
-    await super.take_damage(amount)
-    if animated_sprite_2d.is_playing():
-        await animated_sprite_2d.animation_finished
-    
+    await animated_sprite_2d.animation_finished
+    task_queue.release_task_ref("charecter_damage_anim")    
     if is_dead():
-        modulate.a = .3
-        animated_sprite_2d.rotate(-PI / 2)
+        modulate.a = .2
+        rotate(-PI / 2)
         animated_sprite_2d.play("dead")
     else:
         animated_sprite_2d.play("idle")
         
-    return null
-    
 func _ready() -> void:
     _state = State.WAITING
     aim_tween = create_tween().set_loops()
-    aim_tween.tween_property(aimball, "position", aimball_end.position, 2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT) # Fade out over 1 second
-    aim_tween.tween_property(aimball, "position", aimball_start.position, 2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT) # Fade in over 1 second
+    aim_tween.tween_property(aimball, "position", aimball_end.position, 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT) # Fade out over 1 second
+    aim_tween.tween_property(aimball, "position", aimball_start.position, 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT) # Fade in over 1 second
     
     if party_member_name == "p2":
         var shader_material: ShaderMaterial = animated_sprite_2d.material.duplicate()
@@ -62,6 +60,7 @@ func _ready() -> void:
         shader_material.set_shader_parameter("before_colors", original_palette)
         shader_material.set_shader_parameter("after_colors", p2_palette)
         animated_sprite_2d.material = shader_material
+        
     
 func get_active_combatant_marker() -> Marker2D:
     return $ActiveCombatantMarker
@@ -71,24 +70,22 @@ func _input(event: InputEvent) -> void:
         if event.is_action_pressed("ui_accept"):
             aimball_executed.emit(10)
             
-func execute_action(action: BattleAttackData, target: Combatant) -> void:
-     print("Executing action " + action.display_string + " on target " + target.name)
+func execute_action(task_queue: AsyncTaskQueue, action: BattleAttackData, target: Combatant) -> void:
      if action.unique_name == PartyManager.player_punch_attack_name:
         _currently_executing_action = action
         _current_target_combatant = target
-        execute_simple_punch(action)
+        await execute_simple_punch(task_queue, action)
      else:
         var does_nothing_label := SceneHelpers.create_default_label(Color.RED, 8, "Action Not Implemented Yet")
         does_nothing_label.global_position = get_hit_target_marker().global_position - Vector2(50, 20)
         get_tree().root.add_child(does_nothing_label)
         await get_tree().create_timer(1.5).timeout
         does_nothing_label.queue_free()
-        turn_completed.emit({})
     
 func get_available_actions() -> Array[BattleAttackData]:
      return PartyManager.get_party_member(party_member_name).battle_attacks
 
-func execute_simple_punch(action: BattleAttackData) -> void:
+func execute_simple_punch(task_queue: AsyncTaskQueue, action: BattleAttackData) -> void:
     _state = State.EXECUTING_ACTION
     var start_location := global_position
     
@@ -124,7 +121,7 @@ func execute_simple_punch(action: BattleAttackData) -> void:
     
     aimer.visible = false
     animated_sprite_2d.play("charged_punch")
-    battle_scene.deal_damage_to_combatant(_current_target_combatant, action.base_damage * damage_multiplier)
+    battle_scene.deal_damage_to_combatant(_current_target_combatant, action.base_damage * damage_multiplier, task_queue)
     await animated_sprite_2d.animation_finished
     animated_sprite_2d.position.y -= 74
     animated_sprite_2d.play("teleport_up")
@@ -134,11 +131,24 @@ func execute_simple_punch(action: BattleAttackData) -> void:
     await animated_sprite_2d.animation_finished
     animated_sprite_2d.position.y += 74
     animated_sprite_2d.play("idle")
-    _state = State.WAITING
-    turn_completed.emit({})
+    if not task_queue.is_finished():
+        await task_queue.all_completed
 
-func your_turn_started() -> void:
+    _state = State.WAITING
+
+func your_turn_started(task_queue: AsyncTaskQueue) -> void:
     _state = State.WAITING
 
 func get_stats() -> PlayerBattleStats:
     return PartyManager.get_party_member(party_member_name)
+
+func request_turn_action(task_queue: AsyncTaskQueue) -> Combatant.BattleTurnResult:
+    # Display the selection UI, and wait for the user to select an action.  When they select it, return it back to the battle_scene
+    
+    var select_action_ui := battle_scene.battle_select_action_scene
+    var chosen_action: BattleAttackData = await select_action_ui.select_action(get_available_actions())
+    
+    battle_scene.enter_target_selection(self)
+    var chosen_target: Combatant = await battle_scene.get_user_target_selection(self)
+    
+    return Combatant.BattleTurnResult.new(chosen_action, chosen_target)

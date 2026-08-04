@@ -1,3 +1,4 @@
+class_name SceneHelpers
 extends Node
 
 static func create_default_label(font_color: Color, font_size: int, lable_text: String) -> Label:

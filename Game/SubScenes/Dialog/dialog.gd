@@ -53,7 +53,6 @@ class MessageDisplayData:
         else:
             cur_char_in_segment+=1
     
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     _state = DialogState.Inactive
     _text_font = speech_text_label.get_theme_font("normal_font")
@@ -87,7 +86,7 @@ func fill_words_from_message(cur_message: DialogData.DialogMessage) -> void:
             else:
                 global_position.x = 100
  
-            # THIS won't work if the speaker is at the very top of the screen (The bubblue will show up out of view).
+            # TODO(nick) THIS won't work if the speaker is at the very top of the screen (The bubblue will show up out of view).
             # It also won't work if the User's X coordinat is too high / too low.
             # Will revisit that later                                   
             position.y = speaker_marker2D.global_position.y - speech_bubble_bottom.position.y
@@ -146,7 +145,6 @@ func start_dialog_from_beginning() -> void:
     fill_words_from_message(_dialog_data.messages[_current_message_index])
     pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
     match _state:
         DialogState.Inactive:

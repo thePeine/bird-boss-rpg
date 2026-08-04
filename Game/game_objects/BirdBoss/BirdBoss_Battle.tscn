@@ -29,6 +29,10 @@ region = Rect2(128, 0, 32, 32)
 atlas = ExtResource("2_rifmf")
 region = Rect2(160, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jqpm"]
+atlas = ExtResource("2_rifmf")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgnb0"]
 atlas = ExtResource("3_rifmf")
 region = Rect2(0, 0, 32, 32)
@@ -65,6 +69,14 @@ animations = [{
 "loop": 1,
 "name": &"Idle",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jqpm")
+}],
+"loop": 1,
+"name": &"dead",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -157,8 +169,9 @@ position = Vector2(0, -16)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FootOffset" unique_id=2118752273]
 texture_filter = 1
+scale = Vector2(1.0029044, 1.0023916)
 sprite_frames = SubResource("SpriteFrames_vgnb0")
-animation = &"Idle"
+animation = &"dead"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1037789422]
@@ -174,4 +187,3 @@ position = Vector2(-13, -23)
 [node name="AttackAnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=432624351]
 scale = Vector2(0.9947407, 1)
 sprite_frames = SubResource("SpriteFrames_6fpd1")
-animation = &"slash_attack"

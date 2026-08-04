@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cpat4gceuxiys" path="res://game_objects/BirdBoss/BirdBoss_Overworld.tscn" id="1_1ia38"]
 [ext_resource type="Texture2D" uid="uid://ca7ih4if12l3l" path="res://AssetDump/grass.png" id="1_8chws"]
 [ext_resource type="Script" uid="uid://br3duf0clcj7u" path="res://TopLevelScenes/Level1/level_1.gd" id="1_nqjcm"]
+[ext_resource type="Texture2D" uid="uid://ci5838keboj6s" path="res://TopLevelScenes/Battle/battle scene.png" id="2_k7u2u"]
 [ext_resource type="PackedScene" uid="uid://qmyb85gjg0n6" path="res://game_objects/Player2/P2_Overworld.tscn" id="2_nqjcm"]
-[ext_resource type="Texture2D" uid="uid://domkcgj5104lg" path="res://TopLevelScenes/backgroundfight.png" id="2_wj2nv"]
 [ext_resource type="PackedScene" uid="uid://bd7ynflq1f1q" path="res://SubScenes/Dialog/Dialog.tscn" id="3_k7u2u"]
 [ext_resource type="PackedScene" uid="uid://c5u343xbehvtt" path="res://game_objects/Player1/P1_Overworld.tscn" id="3_wj2nv"]
 [ext_resource type="Texture2D" uid="uid://dcxawvh3be7ee" path="res://AssetDump/Treetrunk.png" id="5_k7u2u"]
@@ -34,7 +34,7 @@ sources/0 = SubResource("TileSetAtlasSource_e2qmb")
 
 [node name="Level1" type="Node2D" unique_id=669514084]
 script = ExtResource("1_nqjcm")
-battle_background = ExtResource("2_wj2nv")
+battle_background = ExtResource("2_k7u2u")
 
 [node name="Dialog" parent="." unique_id=571952403 instance=ExtResource("3_k7u2u")]
 z_index = 2

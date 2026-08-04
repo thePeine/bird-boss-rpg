@@ -17,11 +17,9 @@ func force_move(location: Vector2, speed: float) -> void:
     _state = PlayerCharacterState.ForcedMove
     force_move_speed = speed
     
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     _state = PlayerCharacterState.Idle
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
     if _state == PlayerCharacterState.InDialog:
         return
